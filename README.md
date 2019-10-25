@@ -17,7 +17,14 @@ conda activate keyNet_environment
 conda install -c conda-forge opencv tqdm
 conda install -c conda-forge scikit-image
 ```
-
+## Another Environment Prerequisite (I tried)
+Python=3.6 tensorflow-gpu=1.12.0
+```bash
+conda create --name keyNet_environment python=3.6 tensorflow-gpu=1.12.0
+conda activate keyNet_environment 
+conda install -c conda-forge opencv tqdm
+conda install -c conda-forge scikit-image
+```
 ## Feature Extraction
 
 `extract_multiscale_features.py` can be used to extract Key.Net features for a given list of images. The list of images must contain the full path to them, if they do not exist, an error will raise. 
