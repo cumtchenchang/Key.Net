@@ -263,10 +263,13 @@ def extract_multiscale_features():
             point_level.append(args.num_points * factor_points ** (-1 * (idx_level - args.upsampled_levels)))
 
         point_level = np.asarray(list(map(lambda x: int(x / tmp), point_level)))
-
+       
         # GPU Usage
-        config = tf.ConfigProto()
-        config.gpu_options.per_process_gpu_memory_fraction = args.gpu_memory_fraction
+        # config = tf.ConfigProto()
+        # config.gpu_options.per_process_gpu_memory_fraction = args.gpu_memory_fraction
+        # config.gpu_options.allow_growth = True
+        config = tf.ConfigProto(allow_soft_placement=True)
+        gpu_options = tf.GPUOptions(per_process_gpu_memory_fraction=0.7)
         config.gpu_options.allow_growth = True
 
         with tf.Session(config=config) as sess:
