@@ -6,7 +6,7 @@ import torch
 import torchvison
 
 #imagenet_data = torchvision.datasets.ImageNet('/home/SENSETIME/chenchang1/data/ImageNet/')
-imagenet_data = torchvision.datasets.ImageNet('/mnt/lustre/chenchang1/data/')
+imagenet_data = torchvision.datasets.ImageNet('/home/SENSETIME/chenchang1/data/ImageNet/', download=True)
 data_loader = torch.utils.data.DataLoader(imagenet_data,
                                           batch_size=4,
                                           shuffle=True,
