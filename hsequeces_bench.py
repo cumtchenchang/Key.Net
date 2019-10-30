@@ -42,6 +42,9 @@ def hsequences_metrics():
     parser.add_argument('--pixel-threshold', type=float, default=5,
                         help='The distance of pixels for a matching correspondence to be considered correct.')
 
+    parser.add_argument('--top_k_points', type=bool, default=True,
+                        help='Select top key points.')
+
     parser.add_argument('--dst-to-src-evaluation', type=bool, default=True,
                         help='Order to apply homography to points. Use True for dst to src, False otherwise.')
 
@@ -76,6 +79,7 @@ def hsequences_metrics():
 
         print('\nComputing ' + sequence + ' sequence {0} / {1} \n'.format(count_seq, len(data_loader.sequences)))
 
+        # for idx_im in (range(len(images_dst))):
         for idx_im in tqdm(range(len(images_dst))):
 
             # create the mask to filter out the points outside of the common areas
@@ -170,7 +174,9 @@ def hsequences_metrics():
             match_score, match_score_corr, num_matches = {}, {}, {}
 
             # compute matching based on pixel distance
-            for th_i in range(1, 11):
+            # MMA (mean match accuracy ) computation
+            for th_i in range(0, 11):
+            # for th_i in range(1, 11):
                 match_score_i, match_score_corr_i, num_matches_i = match_tools.compute_matching_based_distance(points_src, points_dst, matches_np,
                                                                        repeatability_results['total_num_points'],
                                                                        pixel_threshold=th_i,
