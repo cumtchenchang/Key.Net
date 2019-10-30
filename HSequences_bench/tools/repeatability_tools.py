@@ -9,7 +9,8 @@ def check_common_points(kpts, mask):
     return np.asarray(idx_valid_points)
 
 
-def select_top_k(kpts, k=1000):
+# def select_top_k(kpts, k=1000):
+def select_top_k(kpts, k=800):
     scores = -1 * kpts[:, 3]
     return np.argsort(scores)[:k]
 
